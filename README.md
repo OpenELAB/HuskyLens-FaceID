@@ -36,7 +36,7 @@ pin = 5
 ## 操作设置
 向左拨动“功能按键”，直至屏幕顶部显示“人脸识别”  
 
-![image](https://github.com/user-attachments/assets/2eab2d1a-0bd6-4bd8-bd0a-97f085720a72)
+![20241007-133952](https://github.com/user-attachments/assets/a2053f66-62ce-4e63-866d-4e5ff840afc4)
 
 ## 学习与识别  
 
