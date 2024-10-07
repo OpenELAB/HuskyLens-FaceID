@@ -1,92 +1,92 @@
-# 概述
-## 基于HuskyLens二哈识图的人脸识别执行动作  
+# summarize
+## Face Recognition Execution Actions Based on HuskyLens Erha Literacy Map
 
 ![image](https://github.com/user-attachments/assets/bbcac29d-61a0-4449-b8e4-802ab2219394)  
 
-## 这个项目中使用到的东西  
+## Things used in this project
 
 1.Raspiberry Pi 4b
 
-2.两个SG90 180度舵机  
+2.Two SG90 180 degree servos
 
-3.SKU SEN0305 Gravity HUSKYLENS 人工智能摄像头  
+3.SKU SEN0305 Gravity HUSKYLENS Artificial Intelligence Camera
 
-## 故事
+## old practice
 
-HuskyLens二哈识图是一款简单易用的AI视觉传感器，内置7种功能：人脸识别、物体追踪、物体识别、巡线追踪、颜色识别、标签识别、物体分类。仅需一个按键即可完成AI训练，摆脱繁琐的训练和复杂的视觉算法，让你更加专注于项目的构思和实现。
-HuskyLens板载UART / I2C接口，可以连接到Arduino、LattePanda、micro:bit等主流控制器，实现硬件无缝对接。HuskyLens直接输出识别结果给控制器，你无需折腾复杂的算法，就能制作非常有创意的项目。
+HuskyLens Erha Literacy is an easy-to-use AI vision sensor with 7 built-in functions: face recognition, object tracking, object recognition, patrol line tracking, color recognition, label recognition, and object classification. AI training can be completed with just one button, getting rid of tedious training and complex visual algorithms, allowing you to focus more on the conception and realization of your project.  
+HuskyLens on-board UART / I2C interface, can be connected to Arduino, LattePanda, micro:bit and other mainstream controllers, to achieve seamless hardware.HuskyLens directly output recognition results to the controller, you do not need to toss the complex algorithms, you can make very creative projects.
 
-## 我们制作这个项目所需的材料  
+## Materials we need to make this program  
 
-1.面包板  
+1.breadboard 
 
-2.公对公跳线  
+2.Male to Male Patch Cords  
 
-## 接线图  
+## wiring diagram  
 
 pin = 5
 ![image](https://github.com/user-attachments/assets/df503f5a-dc7c-4d03-a8d5-83a25c7e8dd5)  
 
-# 具体步骤  
+# concrete step  
 
-## 识别单个人脸  
+## Recognize individual faces  
 
-本功能可以侦测任何脸部轮廓；识别、追踪学习过的人脸且将报文通过串口发送，默认设置为学习并识别单个人脸   
+This function can detect any face profile; recognize and track the learned face and send the message through the serial port, the default setting is to learn and recognize a single face.   
 
-## 操作设置
-向左拨动“功能按键”，直至屏幕顶部显示“人脸识别”  
+## Operation Settings
+Toggle the "Function Button" to the left until "Face Recognition" is displayed at the top of the screen.  
 
 ![20241007-133952](https://github.com/user-attachments/assets/a2053f66-62ce-4e63-866d-4e5ff840afc4)
 
-## 学习与识别  
+## Learning and Recognition  
 
-1.侦测人脸  
-2.把HuskyLens对准有人脸的区域，屏幕上会用白色框自动框选出检测到的所有人脸，并分别显示“人脸”字样。  
-3.若此时屏幕中央的“+”字没有对准任何人脸框，则另一面的RGB灯不亮。  
+1.Face Detection  
+2.Aim the HuskyLens at an area with faces, and the screen will automatically frame all the detected faces with a white box, and display the word "Face" respectively.  
+3.If the "+" in the center of the screen is not aligned with any face frame at this time, the RGB light on the other side will not light up.  
 ![20241007-114345](https://github.com/user-attachments/assets/c1626f97-f7bb-49cb-ba92-48b0db50d8f7)  
-4.若此时屏幕中央的“+”字对准在任意人脸框内，则另一面的RGB灯亮蓝色。  
+4.If the "+" in the center of the screen is aligned within any face frame at this time, the RGB light on the other side will light up blue.  
 ![20241007-114636](https://github.com/user-attachments/assets/21beacd0-79ce-494b-9319-d9f310597c54)  
 
-小提示：  
-6.如需让HuskyLens学习或识别自己的脸，也就是自拍，此时看不到屏幕，那么可以根据RGB指示灯的不同颜色来确定状态。  
-7.学习人脸  
-8.将HuskyLens屏幕中央的“+”字对准需要学习的人脸，短按“学习按键”完成学习。如果识别到相同的脸，则屏幕上会出现一个蓝色的框并显示”人脸：ID1“。这说明已经可以进行人脸识别了。  
+Tip:  
+6.If you need to have the HuskyLens learn or recognize your face, i.e., take a selfie, and you can't see the screen at this point, then you can determine the status based on the different colors of the RGB indicators.  
+7.Learning faces  
+8.Aim the "+" in the center of the HuskyLens screen at the face to be learned, and press the "Learn Button" briefly to complete the learning. If the same face is recognized, a blue box will appear on the screen and display "Face: ID1". This indicates that face recognition is now possible.  
 ![image](https://github.com/user-attachments/assets/bb135796-e733-4171-8215-20f7497f9eab)
-9.然而，上述操作只是让HuskyLens学习了人脸的一个角度(维度)，但实际上人脸是立体的，因此人脸有多个角度。如果人脸角度变化了，比如正脸换成了侧脸，那HuskyLens不一定能识别出来。为解决这个问题，HuskyLens内置有持续学习的功能，能录入人脸的各个角度，让HuskyLens越学越准确。  
-10.录入各个角度人脸的操作方法如下：(注：开始学习新的人脸之前，先要让HuskyLens忘记已经学习过的人脸。操作方法参考“忘记学过的人脸”章节。)  
-11.将HuskyLens屏幕中央的“+”字对准需要学习的人脸，长按“学习按键”不松开，此时屏幕中会在人脸上显示黄色框并标识“人脸:ID1”，说明HuskyLens正在学习人脸。然后，将HuskyLens屏幕中央的黄色框依次对准同一个人的脸的不同角度，如正脸、侧脸（也可以是同一个人的多张照片），录入此人脸的各个角度。学习过程中，RGB灯为黄色。  
+9.However, the above operation only allows HuskyLens to learn one angle (dimension) of the face, but in reality the face is three-dimensional, so there are multiple angles of the face. If the angle of the face changes, for example, a front face is replaced by a side face, then HuskyLens may not be able to recognize it. To solve this problem, HuskyLens has a built-in continuous learning function that can record all angles of the face, so that the more HuskyLens learns, the more accurate it becomes.  
+10.How to record faces from different angles is as follows: (Note: Before you start to learn a new face, you need to let HuskyLens forget the face you have already learned. (Note: Before you start to learn a new face, you need to let HuskyLens forget the face you have already learned, please refer to the chapter of "Forgetting Learned Faces" for the operation method.) 
+11.Aim the "+" in the center of the HuskyLens screen at the face that needs to be learned, and long press the "Learn button" without releasing it, at this time the screen will display a yellow box on the face and mark "Face:ID1 At this time, the screen will display a yellow box on the face and mark "Face:ID1", indicating that HuskyLens is learning the face. Then, the yellow box in the center of the HuskyLens screen will be aligned with different angles of the same person's face, such as the front face, side face (it can also be the same person's multiple photographs), and record the various angles of the face. The RGB light is yellow during the learning process. 
 ![img_v3_02fe_ab74b309-3333-48ec-8e12-1dc0741bd4bg](https://github.com/user-attachments/assets/7423f070-8223-466f-bfa8-b207719a97f5)
-12.接着，松开“学习按键”，结束学习。如果HuskyLens识别到学习过的人脸，则屏幕上，这个人脸会被蓝色的框选中，并显示”人脸：ID1“。  
-13.小提示： 如果屏幕中央没有“+”字，说明HuskyLens在该功能下已经学习过了（已学习状态）。如要让HuskyLens学习新的人脸，则需要先让HuskyLens忘记已学的人脸。  
-14.识别人脸  
-15.HuskyLens学习过的人脸信息会自动保存起来。后续，当HuskyLens检测到学习过的人脸时，会将该人脸用蓝色方框框选出来并标识“人脸:ID1”，边框大小会随着人脸大小而变化，并自动追踪人脸。此时RGB指示灯为绿色。  
+12.Then, release the "Learn Button" to end the learning. If HuskyLens recognizes a learned face, the face will be selected by the blue box on the screen and "Face: ID1" will be displayed.  
+13.Tip: If there is no "+" in the center of the screen, it means that HuskyLens has already learned under this function (Learned Status). If you want HuskyLens to learn a new face, you need to make HuskyLens forget the learned face first.  
+14.face recognition  
+15.The face information learned by HuskyLens will be saved automatically. Later, when HuskyLens detects a learned face, it will select the face with a blue box and identify it as "Face:ID1", the size of the border will change with the size of the face, and automatically track the face. At this time, the RGB indicator is green.  
 ![image](https://github.com/user-attachments/assets/0d8cf33e-40a2-495d-be6a-e7cf5e3fab85)
 
 
-16.忘记学过的人脸  
-17.如果屏幕中央没有“+”字，说明HuskyLens在该功能下已经学习过了（已学习状态）。如要让HuskyLens学习新的人脸，则需要删除之前学习过的人脸信息，也就是让HuskyLens忘记已学的人脸。  
-18.删除已学东西的操作方法如下：  
-19.在当前功能下，短按“学习按键”，屏幕提示“再按一次遗忘！”。在倒计时结束前，再次短按“学习按键”，即可删除上次学习的东西，屏幕中央显示“+”字，说明HuskyLens已经准备好学习新东西了。如果不小心短按了“学习按键”，屏幕已经提示“再按一次遗忘！”，但又不想删除已学习的东西，那么在倒计时结束前，不要有任何操作即可。  
+16.Forgot to learn the human face  
+17.If there is no "+" in the center of the screen, it means that the HuskyLens has already learned under this function (learned state). If you want HuskyLens to learn a new face, you need to delete the information of the previously learned face, that is, to make HuskyLens forget the learned face.  
+18.Deleting something you have learned is done as follows:  
+19.In the current function, press the "Learn button" briefly and the screen prompts "Press again to forget!". before the end of the countdown. Before the end of the countdown, press the "Learn Button" again, you can delete what you learned last time, and the screen displays "+" in the center of the screen, indicating that HuskyLens is ready to learn something new. If you accidentally short press the "Learn button", the screen has prompted "Press again to forget!" If you accidentally short press the "Learn button", the screen has prompted "Press again to forget!", but you don't want to delete what you've learned, then don't do anything until the countdown is over.  
 ![img_v3_02fe_a68d8f19-fa4b-409e-bae3-e95956be312g](https://github.com/user-attachments/assets/d8ea337d-bd4a-4879-9574-f548e4da07a0)  
-注：让HuskyLens忘记所学东西的操作方法，在其他功能下，也是完全一样的，后续不再复述。
+Note: The procedure for making HuskyLens forget what it has learned is exactly the same with other features, and will not be repeated subsequently.
 
-## 识别多个人脸
-默认设置为学习并识别单个人脸。如要学习并识别多个人脸，则需要在人脸识别功能的二级菜单参数设置中打开“学习多个”选项。  
-### 操作设置
-向左拨动“功能按键”，至屏幕顶部显示“人脸识别”。  
-1.长按“功能按键”，进入人脸识别功能的二级菜单参数设置界面。  
-2.向左或向右拨动“功能按键”，选中“学习多个”，然后短按“功能按键”，接着向右拨动“功能按键”打开“学习多个”的开关，即：进度条颜色变蓝，进度条上的方块位于进度条的右边。再短按“功能按键”，确认该参数。  
-3.向左拨动“功能按键”，选中“保存并返回“，短按”功能按键“，屏幕提示”是否保存参数？“。默认选择”确认“，此时短按”功能按键“，即可保存参数，并自动返回到人脸识别模式。  
-### 学习与识别
-1.学习多个人脸：  
-2.将HuskyLens屏幕中央的“+”字对准需要学习的人脸，长按“学习按键”完成第一个人脸的学习（各个角度）。松开”学习按键“后，屏幕上会提示：”再按一次按键继续！按其他按键结束“。如要继续学习下一个人脸，则在倒计时结束前短按“学习按键”，可以继续学习下一个人脸。如果不再需要学习其他人脸了，则在倒计时结束前短按”功能按键”即可,或者不操作任何按键，等待倒计时结束。  
-3.本章节中，我们需要继续学习下一个人脸，因此在倒计时结束前短按“学习按键”。然后将HuskyLens屏幕中央的“+”字对准需要学习的下一个人脸，长按“学习按键”完成第二个人的脸的学习。以此类推。  
-4.HuskyLens标注的人脸ID与录入人脸的先后顺序是一致的，也就是：学习过的人脸会按顺序依次标注为“人脸：ID1”，“人脸：ID2”，“人脸：ID3”，以此类推，并且不同的人脸ID对应的边框颜色也不同。  
-5.小提示：如果屏幕中央没有“+”字，说明HuskyLens在该功能下已经学习过了（已学习状态）。如要让HuskyLens学习新人脸，则需要先让HuskyLens忘记已学的。操作方法参考“忘记学过的人脸”章节。  
-6.识别多个人脸：  
-7.HuskyLens学习过的人脸信息会自动保存起来。后续，当HuskyLens检测到学习过的人脸时，会将这些人脸用方框框选出来并标识ID，第一个学习的人脸标注为“人脸：ID1”，第二个学习的人脸标注为“人脸：ID2”，第三个学习的人脸标注为“人脸：ID3”，以此类推。不同的人脸ID对应的边框颜色也不同，边框大小会随着人脸大小而变化，并自动追踪人脸。  
+## Recognize multiple faces
+The default setting is to learn and recognize a single face. If you want to learn and recognize multiple faces, you need to turn on the "Learn Multiple" option in the parameter settings of the secondary menu of the Face Recognition function.  
+### The default setting is to learn and recognize a single face. If you want to learn and recognize multiple faces, you need to turn on the "Learn Multiple" option in the parameter settings of the secondary menu of the Face Recognition function.
+Toggle the "Function Button" to the left to display "Face Recognition" at the top of the screen.  
+1.Press and hold the "Function Button" to enter the second level menu parameter setting interface of the face recognition function.  
+2.Toggle the "Function button" to the left or right, select "Learn more than one", then press the "Function button" briefly, then toggle the "Function button" to the right. Then press the "Function Button" briefly, then press the "Function Button" to the right to turn on the switch of "Learn Multiple", i.e. the color of the progress bar turns blue, and the square on the progress bar is located on the right side of the progress bar. Confirm the parameter by pressing the "Function button" again.  
+3.Toggle the "Function button" to the left, select "Save and return", press the "Function button" briefly, and the screen prompts "Do you want to save the parameter? The screen prompts "Do you want to save the parameter? The default choice is "Confirm", then press "Function Button" briefly to save the parameters and return to face recognition mode automatically.  
+### Learning and Recognition
+1.Learning multiple faces:  
+2.Aim the "+" in the center of the HuskyLens screen at the face you want to learn, and press and hold the "Learn Button" to finish learning the first face (from all angles). After releasing the "learning button", the screen will prompt: "Press the button again to continue! Press another button to finish". If you want to continue learning the next face, press the "Learn Button" briefly before the countdown ends to continue learning the next face. If you don't need to learn another face anymore, just press the "Function button" before the countdown ends, or don't operate any button and wait for the countdown to end.  
+3.In this chapter, we need to continue to learn the next face, so press the "Learn Button" briefly before the countdown ends. Then align the "+" in the center of the HuskyLens screen with the next face to be learned, and press and hold the "Learn Button" to finish learning the second face. And so on.  
+4.The face IDs labeled by HuskyLens are in the same order as the recorded faces, i.e., the learned faces are labeled as "Face: ID1", "Face: ID2", "Face: ID3" and so on. Face: ID3", and so on, and different face IDs correspond to different border colors. 
+5.Tip: If there is no "+" in the center of the screen, it means that HuskyLens has already learned under this function (learned status). If you want HuskyLens to learn a new face, you need to let HuskyLens forget the learned face first. Please refer to the section "Forgetting Learned Faces" for the operation method.
+6.Recognize multiple faces:
+7.The information of the faces learned by HuskyLens will be saved automatically. Subsequently, when HuskyLens detects the learned faces, it will select these faces with a box and identify the ID, the first learned face is labeled as "Face: ID1", the second learned face is labeled as "Face: ID2", the third learned face is labeled as "Face: ID3", and so on. The third learned face is labeled as "Face: ID3", and so on. Different face IDs correspond to different border colors, and the size of the border will change with the size of the face, and automatically track the face.  
 ![img_v3_02fe_f487fa28-5537-4b5b-9c96-e44dd920332g](https://github.com/user-attachments/assets/886c1760-5007-4f0c-a8ee-7a09ad2f247f)
-## 实验现象
+## Experimental Phenomena
 https://github.com/user-attachments/assets/ca646a3d-14b9-4742-b308-6583ad8a0ba0
 
 
