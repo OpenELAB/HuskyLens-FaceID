@@ -60,7 +60,8 @@ pin = 5
 13.小提示： 如果屏幕中央没有“+”字，说明HuskyLens在该功能下已经学习过了（已学习状态）。如要让HuskyLens学习新的人脸，则需要先让HuskyLens忘记已学的人脸。  
 14.识别人脸  
 15.HuskyLens学习过的人脸信息会自动保存起来。后续，当HuskyLens检测到学习过的人脸时，会将该人脸用蓝色方框框选出来并标识“人脸:ID1”，边框大小会随着人脸大小而变化，并自动追踪人脸。此时RGB指示灯为绿色。  
-![img_v3_02fe_8390ceec-b217-4f98-b8e2-8da9618f8d5g](https://github.com/user-attachments/assets/684f911e-875f-4edd-8eac-7bc3368301dd)
+![image](https://github.com/user-attachments/assets/0d8cf33e-40a2-495d-be6a-e7cf5e3fab85)
+
 
 16.忘记学过的人脸  
 17.如果屏幕中央没有“+”字，说明HuskyLens在该功能下已经学习过了（已学习状态）。如要让HuskyLens学习新的人脸，则需要删除之前学习过的人脸信息，也就是让HuskyLens忘记已学的人脸。  
