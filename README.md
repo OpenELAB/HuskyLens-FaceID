@@ -103,5 +103,5 @@ __Discord__
 
 ## Material Purchase Links
 [HuskyLens AI](https://openelab.io/products/huskylens-ai-camera?_pos=1&_psq=HuskyLens&_ss=e&_v=1.0)  
-[Raspberry Pi 4 Model B](https://openelab.io/products/raspberry-pi?_pos=3&_sid=e7313cc6c&_ss=r&variant=43457708130502)。
+[Raspberry Pi 4 Model B](https://openelab.io/products/raspberry-pi?_pos=3&_sid=e7313cc6c&_ss=r&variant=43457708130502)  
 [Servo Motor SG90](https://openelab.io/products/servo-motor-sg90?_pos=1&_sid=228e703ec&_ss=r)
